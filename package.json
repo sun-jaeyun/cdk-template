@@ -5,8 +5,8 @@
     "cdk-template": "bin/cdk-template.js"
   },
   "scripts": {
-    "format": "prettier --write \"bin/**/*.ts\" \"lib/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint \"{bin,lib,test}/**/*.ts\" --fix --concurrency=auto",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\" --fix --concurrency=auto",
     "typecheck": "tsc --noEmit",
     "bootstrap": "cdk bootstrap",
     "deploy": "cdk deploy",

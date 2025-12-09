@@ -27,13 +27,12 @@
     ],
     "paths": {
       "@/*": [
-        "*"
+        "src/*"
       ]
     }
   },
   "include": [
-    "bin/**/*.ts",
-    "lib/**/*.ts",
+    "src/**/*.ts",
     "test/**/*.ts",
     "jest.config.ts",
   ],

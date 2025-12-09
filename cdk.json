@@ -1,5 +1,5 @@
 {
-  "app": "tsx bin/cdk-template.ts",
+  "app": "tsx src/bin/cdk-template.ts",
   "context": {
     "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
     "@aws-cdk/aws-appsync:appSyncGraphQLAPIScopeLambdaPermission": true,
