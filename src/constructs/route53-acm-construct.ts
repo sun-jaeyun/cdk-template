@@ -4,11 +4,9 @@ import { Construct } from 'constructs';
 
 export class Route53AcmConstruct extends Construct {
   public readonly hostedZone: IHostedZone;
-  public readonly campusHostedZone: IHostedZone;
   public readonly privateHostedZone: IHostedZone;
   public readonly globalCertificate: ICertificate;
   public readonly certificate: ICertificate;
-  public readonly campusCertificate: ICertificate;
 
   constructor(scope: Construct, id: string) {
     super(scope, id);

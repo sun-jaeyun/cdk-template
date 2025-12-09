@@ -4,8 +4,7 @@ import { Construct } from 'constructs';
 
 export class EcrConstruct extends Construct {
   public readonly backendRepository: Repository;
-  // public readonly frontendWebRepository: Repository;
-  public readonly frontendCampusRepository: Repository;
+  public readonly frontendRepository: Repository;
 
   constructor(scope: Construct, id: string) {
     super(scope, id);
@@ -36,7 +35,7 @@ export class EcrConstruct extends Construct {
     });
 
     // Frontend ECR 리포지토리
-    this.frontendCampusRepository = new Repository(this, 'FrontendRepository', {
+    this.frontendRepository = new Repository(this, 'FrontendRepository', {
       repositoryName: 'frontend-repository', // 리포지토리 이름
       imageTagMutability: TagMutability.MUTABLE, // 이미지 태그 수정 가능 여부
       removalPolicy: RemovalPolicy.RETAIN, // 삭제 정책

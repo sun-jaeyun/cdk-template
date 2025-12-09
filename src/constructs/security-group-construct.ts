@@ -21,6 +21,7 @@ export class SecurityGroupConstruct extends Construct {
     // Bastion 보안 그룹
     this.bastionSg = new SecurityGroup(this, 'BastionSg', {
       vpc: props.vpc,
+      securityGroupName: 'bastion-sg',
       description: 'Bastion',
     });
     // 내 IP 추가
@@ -34,12 +35,14 @@ export class SecurityGroupConstruct extends Construct {
     // VPC Link 보안 그룹
     this.vpcLinkSg = new SecurityGroup(this, 'VpcLinkSg', {
       vpc: props.vpc,
+      securityGroupName: 'vpc-link-sg',
       description: 'VPC Link',
     });
 
     // Frontend 로드밸런서 보안 그룹
     this.frontendLbSg = new SecurityGroup(this, 'FrontendLbSg', {
       vpc: props.vpc,
+      securityGroupName: 'frontend-lb-sg',
       description: 'Frontend LoadBalancer',
     });
     // 80(HTTP), 443(HTTPS), 8080(블루/그린 배포 용) 포트 추가
@@ -58,6 +61,7 @@ export class SecurityGroupConstruct extends Construct {
     // Frontend 보안그룹
     this.frontendSg = new SecurityGroup(this, 'FrontendSg', {
       vpc: props.vpc,
+      securityGroupName: 'frontend-sg',
       description: 'Frontend',
     });
     // Frontend 로드밸런서 3000 포트 추가
@@ -66,6 +70,7 @@ export class SecurityGroupConstruct extends Construct {
     // Backend 로드밸런서 보안그룹
     this.backendLbSg = new SecurityGroup(this, 'BackendLbSg', {
       vpc: props.vpc,
+      securityGroupName: 'backend-lb-sg',
       description: 'Backend LoadBalancer',
     });
     // 80(HTTP), 8080(블루/그린 배포 용) 포트 추가
@@ -79,6 +84,7 @@ export class SecurityGroupConstruct extends Construct {
     // Backend 보안그룹
     this.backendSg = new SecurityGroup(this, 'BackendSg', {
       vpc: props.vpc,
+      securityGroupName: 'backend-sg',
       description: 'Backend',
     });
     // Backend 로드밸런서 3000 포트 추가
@@ -87,6 +93,7 @@ export class SecurityGroupConstruct extends Construct {
     // 데이터베이스 보안그룹
     this.databaseSg = new SecurityGroup(this, 'DatabaseSg', {
       vpc: props.vpc,
+      securityGroupName: 'database-sg',
       description: 'Database',
     });
     // Bastion, Backend 5432 포트 추가
@@ -96,6 +103,7 @@ export class SecurityGroupConstruct extends Construct {
     // Cache 보안그룹
     this.cacheSg = new SecurityGroup(this, 'CacheSg', {
       vpc: props.vpc,
+      securityGroupName: 'cache-sg',
       description: 'Cache',
     });
     // Backend 6379 포트 추가

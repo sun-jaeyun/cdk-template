@@ -1,5 +1,4 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
 
 import { DatabaseCacheConstruct } from '@/constructs/database-cache-construct';
 import { EcrConstruct } from '@/constructs/ecr-construct';
@@ -7,6 +6,8 @@ import { Route53AcmConstruct } from '@/constructs/route53-acm-construct';
 import { SecurityGroupConstruct } from '@/constructs/security-group-construct';
 import { VpcLinkConstruct } from '@/constructs/vpc-link-construct';
 import { VpcSubnetConstruct } from '@/constructs/vpc-subnet-construct';
+
+import type { Construct } from 'constructs';
 
 export class FoundationStack extends Stack {
   public readonly route53Acm: Route53AcmConstruct;
