@@ -5,22 +5,38 @@
     "cdk-template": "bin/cdk-template.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest",
-    "cdk": "cdk"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "@types/node": "^24.10.1",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.2.5",
-    "aws-cdk": "2.1033.0",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.9.3"
+    "format": "prettier --write \"bin/**/*.ts\" \"lib/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{bin,lib,test}/**/*.ts\" --fix --concurrency=auto",
+    "typecheck": "tsc --noEmit",
+    "bootstrap": "cdk bootstrap",
+    "deploy": "cdk deploy",
+    "diff": "cdk diff",
+    "destroy": "cdk destroy",
+    "synth": "cdk synth"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.215.0",
+    "aws-cdk-lib": "^2.225.0",
     "constructs": "^10.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.39.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.19.2",
+    "aws-cdk": "^2.1031.2",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "jest": "^29.7.0",
+    "source-map-support": "^0.5.21",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.47.0"
   }
 }
