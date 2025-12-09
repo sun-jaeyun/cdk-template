@@ -37,7 +37,9 @@ export type Environment = SharedEnvironment & VariableEnvironment;
 
 // 공통 환경 변수 선언
 export const sharedEnvironment: SharedEnvironment = {
+  // TODO: 실제 값 추가
   corsAllowedOrigins: ['example.com', '*.example.com'],
+  // TODO: 실제 값 추가
   envBucketArn: 'arn:aws:s3:::example-env',
 } as const;
 
@@ -45,19 +47,25 @@ export const sharedEnvironment: SharedEnvironment = {
 export const stagingEnvironment: Environment = {
   ...sharedEnvironment,
   env: 'staging',
+  // TODO: 실제 값 추가
   cloudFrontDomain: 'staging-cdn.example.com',
   containerName: 'app',
   containerPort: 3000,
   backendCpu: 256,
   backendMemory: 512,
+  // TODO: 실제 값 추가
   backendEnvPath: 'backend/staging/.env',
   backendDesiredCount: 1,
+  // TODO: 실제 값 추가
   backendDomain: 'staging-api.example.internal',
+  // TODO: 실제 값 추가
   apiGatewayDomain: 'staging-api.example.com',
   frontendCpu: 256,
   frontendMemory: 512,
+  // TODO: 실제 값 추가
   frontendEnvPath: 'frontend/staging/.env',
   frontendDesiredCount: 1,
+  // TODO: 실제 값 추가
   frontendDomain: 'staging.example.com',
 } as const;
 
@@ -65,18 +73,24 @@ export const stagingEnvironment: Environment = {
 export const productionEnvironment: Environment = {
   ...sharedEnvironment,
   env: 'production',
+  // TODO: 실제 값 추가
   cloudFrontDomain: 'cdn.example.com',
   containerName: 'app',
   containerPort: 3000,
   backendCpu: 512,
   backendMemory: 1024,
+  // TODO: 실제 값 추가
   backendEnvPath: 'backend/production/.env',
   backendDesiredCount: 1,
+  // TODO: 실제 값 추가
   backendDomain: 'api.example.internal',
+  // TODO: 실제 값 추가
   apiGatewayDomain: 'api.example.com',
   frontendCpu: 512,
   frontendMemory: 1024,
+  // TODO: 실제 값 추가
   frontendEnvPath: 'frontend/production/.env',
   frontendDesiredCount: 1,
+  // TODO: 실제 값 추가
   frontendDomain: 'example.com',
 };
