@@ -1,5 +1,5 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-
+import type { Construct } from 'constructs';
 import { BackendApplicationConstruct } from '@/constructs/backend-application-construct';
 import { EcsClusterConstruct } from '@/constructs/ecs-cluster-construct';
 import { EventBridgeConstruct } from '@/constructs/eventbridge-construct';
@@ -7,10 +7,8 @@ import { FrontendApplicationConstruct } from '@/constructs/frontend-application-
 import { S3CloudfrontConstruct } from '@/constructs/s3-cloudfront-construct';
 import { SqsConstruct } from '@/constructs/sqs-construct';
 
-import { FoundationStack } from './foundation-stack';
-
 import type { Environment } from '@/lib/environment';
-import type { Construct } from 'constructs';
+import { FoundationStack } from './foundation-stack';
 
 export class ApplicationStack extends Stack {
   public readonly s3Cloudfront: S3CloudfrontConstruct;

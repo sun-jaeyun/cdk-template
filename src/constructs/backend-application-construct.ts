@@ -8,9 +8,12 @@ import {
   type VpcLink,
 } from 'aws-cdk-lib/aws-apigatewayv2';
 import { HttpAlbIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
-import { SubnetType, type SecurityGroup, type Vpc } from 'aws-cdk-lib/aws-ec2';
+import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { type SecurityGroup, SubnetType, type Vpc } from 'aws-cdk-lib/aws-ec2';
+import type { Repository } from 'aws-cdk-lib/aws-ecr';
 import {
   AlternateTarget,
+  type Cluster,
   ContainerImage,
   CpuArchitecture,
   DeploymentControllerType,
@@ -23,28 +26,24 @@ import {
   OperatingSystemFamily,
   Protocol,
   Secret,
-  type Cluster,
 } from 'aws-cdk-lib/aws-ecs';
 import {
+  type ApplicationListener,
   ApplicationListenerRule,
   ApplicationLoadBalancer,
   ApplicationProtocol,
   ApplicationTargetGroup,
   ListenerCondition,
   TargetType,
-  type ApplicationListener,
 } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
-import { AaaaRecord, ARecord, RecordTarget, type IHostedZone } from 'aws-cdk-lib/aws-route53';
+import { AaaaRecord, ARecord, type IHostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { ApiGatewayv2DomainProperties, LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
-
 import type { Environment } from '@/lib/environment';
-import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
-import type { Repository } from 'aws-cdk-lib/aws-ecr';
 
 interface BackendApplicationConstructProps {
   vpc: Vpc;

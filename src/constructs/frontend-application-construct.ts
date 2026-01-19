@@ -1,7 +1,10 @@
 import { CfnOutput, Duration, RemovalPolicy } from 'aws-cdk-lib';
-import { SubnetType, type SecurityGroup, type Vpc } from 'aws-cdk-lib/aws-ec2';
+import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { type SecurityGroup, SubnetType, type Vpc } from 'aws-cdk-lib/aws-ec2';
+import type { Repository } from 'aws-cdk-lib/aws-ecr';
 import {
   AlternateTarget,
+  type Cluster,
   ContainerImage,
   CpuArchitecture,
   DeploymentControllerType,
@@ -13,9 +16,9 @@ import {
   LogDriver,
   OperatingSystemFamily,
   Protocol,
-  type Cluster,
 } from 'aws-cdk-lib/aws-ecs';
 import {
+  type ApplicationListener,
   ApplicationListenerRule,
   ApplicationLoadBalancer,
   ApplicationProtocol,
@@ -23,18 +26,14 @@ import {
   ListenerAction,
   ListenerCondition,
   TargetType,
-  type ApplicationListener,
 } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
-import { AaaaRecord, ARecord, RecordTarget, type IHostedZone } from 'aws-cdk-lib/aws-route53';
+import { AaaaRecord, ARecord, type IHostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
-
 import type { Environment } from '@/lib/environment';
-import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
-import type { Repository } from 'aws-cdk-lib/aws-ecr';
 
 interface FrontendApplicationConstructProps {
   vpc: Vpc;

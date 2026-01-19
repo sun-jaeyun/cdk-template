@@ -3,10 +3,9 @@ import { Rule, RuleTargetInput } from 'aws-cdk-lib/aws-events';
 import { SqsQueue } from 'aws-cdk-lib/aws-events-targets';
 import { Schedule, ScheduleExpression, ScheduleTargetInput } from 'aws-cdk-lib/aws-scheduler';
 import { SqsSendMessage } from 'aws-cdk-lib/aws-scheduler-targets';
-import { Construct } from 'constructs';
-
-import type { Environment } from '@/lib/environment';
 import type { Queue } from 'aws-cdk-lib/aws-sqs';
+import { Construct } from 'constructs';
+import type { Environment } from '@/lib/environment';
 
 interface EventBridgeConstructProps {
   queue: Queue;

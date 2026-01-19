@@ -1,6 +1,6 @@
 import { CfnOutput } from 'aws-cdk-lib';
 import { VpcLink } from 'aws-cdk-lib/aws-apigatewayv2';
-import { SubnetType, type SecurityGroup, type Vpc } from 'aws-cdk-lib/aws-ec2';
+import { type SecurityGroup, SubnetType, type Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 
 interface VpcLinkConstructProps {
