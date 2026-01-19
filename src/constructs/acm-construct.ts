@@ -2,16 +2,16 @@ import { Certificate, type ICertificate } from 'aws-cdk-lib/aws-certificatemanag
 import { Construct } from 'constructs';
 
 export class AcmConstruct extends Construct {
-  public readonly use1Certificate: ICertificate;
+  public readonly globalCertificate: ICertificate;
   public readonly apne2Certificate: ICertificate;
 
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
-    // us-east-1 ACM 인증서
-    this.use1Certificate = Certificate.fromCertificateArn(
+    // Global(us-east-1) ACM 인증서
+    this.globalCertificate = Certificate.fromCertificateArn(
       this,
-      'UsEast1Certificate',
+      'GlobalCertificate',
       // TODO: 실제 값 추가
       'arn:aws:acm:us-east-1:1234567890:certificate/' as const,
     );

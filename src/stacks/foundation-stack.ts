@@ -1,6 +1,7 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
-import { DatabaseCacheConstruct } from '@/constructs/database-cache-construct';
+import { DatabaseConstruct } from '@/constructs/database-construct';
+import { ServerlessCacheConstruct } from '@/constructs/serverless-cache-construct';
 import { EcrConstruct } from '@/constructs/ecr-construct';
 import { Route53Construct } from '@/constructs/route53-construct';
 import { SecurityGroupConstruct } from '@/constructs/security-group-construct';
@@ -12,7 +13,8 @@ export class FoundationStack extends Stack {
   public readonly vpcSubnet: VpcSubnetConstruct;
   public readonly securityGroup: SecurityGroupConstruct;
   public readonly vpcLink: VpcLinkConstruct;
-  public readonly databaseCache: DatabaseCacheConstruct;
+  public readonly database: DatabaseConstruct;
+  public readonly cache: ServerlessCacheConstruct;
   public readonly ecr: EcrConstruct;
 
   constructor(scope: Construct, id: string, props: StackProps) {
@@ -35,10 +37,15 @@ export class FoundationStack extends Stack {
       vpcLinkSg: this.securityGroup.vpcLinkSg,
     });
 
-    // Database, Cache 생성
-    this.databaseCache = new DatabaseCacheConstruct(this, 'DatabaseCacheConstruct', {
+    // Database 생성
+    this.database = new DatabaseConstruct(this, 'DatabaseConstruct', {
       vpc: this.vpcSubnet.vpc,
       databaseSg: this.securityGroup.databaseSg,
+    });
+
+    // Cache 생성
+    this.cache = new ServerlessCacheConstruct(this, 'ServerlessCacheConstruct', {
+      vpc: this.vpcSubnet.vpc,
       cacheSg: this.securityGroup.cacheSg,
     });
 

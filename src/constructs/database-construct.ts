@@ -1,6 +1,5 @@
 import { CfnOutput, Duration, RemovalPolicy, SecretValue } from 'aws-cdk-lib';
 import { InstanceClass, InstanceSize, InstanceType, SecurityGroup, Vpc } from 'aws-cdk-lib/aws-ec2';
-import { CfnServerlessCache } from 'aws-cdk-lib/aws-elasticache';
 import {
   Credentials,
   DatabaseInsightsMode,
@@ -12,17 +11,15 @@ import {
 } from 'aws-cdk-lib/aws-rds';
 import { Construct } from 'constructs';
 
-interface DatabaseCacheConstructProps {
+interface DatabaseConstructProps {
   vpc: Vpc;
   databaseSg: SecurityGroup;
-  cacheSg: SecurityGroup;
 }
 
-export class DatabaseCacheConstruct extends Construct {
+export class DatabaseConstruct extends Construct {
   public readonly database: DatabaseInstance;
-  public readonly cache: CfnServerlessCache;
 
-  constructor(scope: Construct, id: string, props: DatabaseCacheConstructProps) {
+  constructor(scope: Construct, id: string, props: DatabaseConstructProps) {
     super(scope, id);
 
     // Database 파라미터 그룹
@@ -66,16 +63,6 @@ export class DatabaseCacheConstruct extends Construct {
       parameterGroup, // 파라미터 그룹
     });
 
-    // ElastiCache
-    this.cache = new CfnServerlessCache(this, 'Cache', {
-      serverlessCacheName: 'valkey-cache',
-      engine: 'valkey', // 엔진
-      majorEngineVersion: '8', // 버전
-      subnetIds: props.vpc.isolatedSubnets.map((subnet) => subnet.subnetId), // 서브넷
-      securityGroupIds: [props.cacheSg.securityGroupId], // 보안그룹
-      snapshotRetentionLimit: 1, // 스냅샷 보존 기간 (일)
-    });
-
     // 출력
     new CfnOutput(this, 'DatabaseArn', {
       value: this.database.instanceArn,
@@ -90,21 +77,6 @@ export class DatabaseCacheConstruct extends Construct {
     new CfnOutput(this, 'DatabasePort', {
       value: this.database.dbInstanceEndpointPort,
       description: 'Database Port',
-    });
-
-    new CfnOutput(this, 'CacheArn', {
-      value: this.cache.attrArn,
-      description: 'Cache ARN',
-    });
-
-    new CfnOutput(this, 'CacheHost', {
-      value: this.cache.attrEndpointAddress,
-      description: 'Cache Host',
-    });
-
-    new CfnOutput(this, 'CachePort', {
-      value: this.cache.attrEndpointPort,
-      description: 'Cache Port',
     });
   }
 }
